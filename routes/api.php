@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubjectAreaController;
 use App\Http\Controllers\UserInterestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,5 @@ Route::get('/users', function (Request $request) {
 
 Route::post('/user-interest', [UserInterestController::class, 'store']);
 Route::get('/all-user-interest', [UserInterestController::class, 'index']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->apiResource('subject-areas', SubjectAreaController::class);
