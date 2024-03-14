@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserInterestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Route::get('/users', function (Request $request) {
         'name' => 'John Doe',
         'email' => 'kowcher' ]);
 });
+
+Route::post('/user-interest', [UserInterestController::class, 'store']);
+Route::get('/all-user-interest', [UserInterestController::class, 'index']);

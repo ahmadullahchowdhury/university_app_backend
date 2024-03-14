@@ -26,11 +26,12 @@ class LoginController extends Controller
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
+        $roles = $user->getRoleNames();
         return response([
             'user' => $user,
             'token' => $token,
             'token_type' => 'Bearer',
+            'roles' => $roles,
         ],200);
     }
 }
