@@ -54,6 +54,12 @@ class UserInterestController extends Controller
     {
         //
     }
+    public function getGpsData(UserInterest $userInterest)
+    {
+         $getData = UserInterest::pluck('gps_location')->toArray();
+
+        return response()->json(['data' => $getData],);
+    }
 
     /**
      * Show the form for editing the specified resource.

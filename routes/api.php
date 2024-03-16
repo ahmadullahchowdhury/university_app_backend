@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/user-interest', [UserInterestController::class, 'store']);
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/gps-data', [UserInterestController::class, 'getGpsData']);
 
 
 Route::middleware(['auth:sanctum', 'role:admin'])->get('/all-user-interest', [UserInterestController::class, 'index']);
