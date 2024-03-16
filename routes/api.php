@@ -16,17 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return true;
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return true;
+// });
 
-Route::get('/users', function (Request $request) {
-    return response()->json([
-        'name' => 'John Doe',
-        'email' => 'kowcher' ]);
-});
+// Route::get('/users', function (Request $request) {
+//     return response()->json([
+//         'name' => 'John Doe',
+//         'email' => 'kowcher' ]);
+// });
 
 Route::post('/user-interest', [UserInterestController::class, 'store']);
-Route::get('/all-user-interest', [UserInterestController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'role:admin'])->apiResource('subject-areas', SubjectAreaController::class);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/all-user-interest', [UserInterestController::class, 'index']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/subject-areas', [SubjectAreaController::class, 'index']);
+Route::middleware(['auth:sanctum', 'role:admin'])->post('/subject-areas', [SubjectAreaController::class, 'store']);
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/subject-areas/{id}', [SubjectAreaController::class, 'show']);
+Route::middleware(['auth:sanctum', 'role:admin'])->post('/subject-areas/{id}', [SubjectAreaController::class, 'update']);
+Route::middleware(['auth:sanctum', 'role:admin'])->delete('/subject-areas/{id}', [SubjectAreaController::class, 'destroy']);
